@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management - Admin Dashboard</title>
+
+    <!-- Internal CSS -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            background-color: #00796b;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            background-color: #ff9800;
+            border-radius: 5px;
+        }
+
+        .user-management {
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #00796b;
+            margin-bottom: 20px;
+        }
+
+        .user-table {
+            width: 80%;
+            margin: 30px auto;
+            border-collapse: collapse;
+        }
+
+        .user-table th, .user-table td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        .user-table th {
+            background-color: #00796b;
+            color: white;
+        }
+
+        .user-table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .user-table button {
+            background-color: #ff9800;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .user-table button:hover {
+            background-color: #ff5722;
+        }
+
+        .add-user-form {
+            background-color: #fff;
+            padding: 20px;
+            margin-top: 30px;
+            width: 50%;
+            margin: 30px auto;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .add-user-form input[type="text"], .add-user-form input[type="email"], .add-user-form input[type="password"], .add-user-form select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .add-user-form input[type="submit"] {
+            background-color: #00796b;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .add-user-form input[type="submit"]:hover {
+            background-color: #ff9800;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        footer ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        footer ul li {
+            margin: 10px 0;
+        }
+
+        footer ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .add-user-form {
+                width: 80%;
+            }
+
+            .user-table {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <h1>User Management</h1>
+    </header>
+
+    <!-- Navigation Menu -->
+    <nav>
+        <ul>
+            <li><a href="admin_dashboard.html">Dashboard</a></li>
+            <li><a href="manage-sensors.html">Manage Sensors</a></li>
+            <li><a href="view-sensor-data.html">View Sensor Data</a></li>
+            <li><a href="user-management.html">User Management</a></li>
+        </ul>
+    </nav>
+
+    <!-- User Management Section -->
+    <section class="user-management">
+        <h2>Manage Admin Users</h2>
+
+        <!-- Add New User Form -->
+        <div class="add-user-form">
+            <h3>Add New Admin User</h3>
+            <form id="add-user-form" method="POST" onsubmit="return addUser()">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" placeholder="Enter username" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter email" required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter password" required>
+
+                <input type="hidden" id="role" name="role" value="admin">
+
+                <input type="submit" value="Add Admin User">
+            </form>
+        </div>
+
+        <!-- User List Table -->
+        <table class="user-table">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Password</th> <!-- Added Password Column -->
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="user-list">
+                <!-- Example User Data -->
+                <tr>
+                    <td>John Doe</td>
+                    <td>john.doe@example.com</td>
+                    <td>Admin</td>
+                    <td>*****</td> <!-- Display password as '*****' for security -->
+                    <td>
+                        <button>Edit</button>
+                        <button>Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Jane Smith</td>
+                    <td>jane.smith@example.com</td>
+                    <td>Admin</td>
+                    <td>*****</td> <!-- Display password as '*****' for security -->
+                    <td>
+                        <button>Edit</button>
+                        <button>Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <ul>
+            <li><a href="index.html#about-section">About the Project</a></li>
+            <li><a href="contactus.html#privacy-policy-section">Privacy Policy</a></li>
+            <li><a href="contactus.html#contact-us-section">Contact Us</a></li>
+        </ul>
+        <p>© 2025 Real-time Air Quality Monitoring Project</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Add new user (admin only) function
+        function addUser() {
+            var username = document.getElementById('username').value;
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+            var role = document.getElementById('role').value;
+
+            // Create a new table row with the new user data
+            var table = document.getElementById('user-list');
+            var row = table.insertRow();
+
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            var cell3 = row.insertCell(2);
+            var cell4 = row.insertCell(3); // Cell for Password
+            var cell5 = row.insertCell(4); // Cell for Actions
+
+            cell1.textContent = username;
+            cell2.textContent = email;
+            cell3.textContent = role;
+            cell4.textContent = "*****";  // Display password as '*****' for security
+            cell5.innerHTML = `<button>Edit</button> <button>Delete</button>`;
+
+            // Clear form fields
+            document.getElementById('username').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('password').value = '';
+
+            // Prevent form submission (for demo purposes)
+            return false;
+        }
+    </script>
+
+</body>
+</html>
