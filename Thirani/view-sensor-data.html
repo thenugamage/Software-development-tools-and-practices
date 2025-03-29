@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Sensor Data - Admin Dashboard</title>
+
+    <!-- Internal CSS -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            background-color: #00796b;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            background-color: #ff9800;
+            border-radius: 5px;
+        }
+
+        .view-sensor-data {
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #00796b;
+            margin-bottom: 20px;
+        }
+
+        .sensor-data-table {
+            width: 80%;
+            margin: 30px auto;
+            border-collapse: collapse;
+        }
+
+        .sensor-data-table th, .sensor-data-table td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        .sensor-data-table th {
+            background-color: #00796b;
+            color: white;
+        }
+
+        .sensor-data-table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .sensor-data-table button {
+            background-color: #ff9800;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .sensor-data-table button:hover {
+            background-color: #ff5722;
+        }
+
+        .filter-section {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .filter-section input, .filter-section select {
+            padding: 10px;
+            font-size: 1rem;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        footer ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        footer ul li {
+            margin: 10px 0;
+        }
+
+        footer ul li a {
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <h1>View Sensor Data</h1>
+    </header>
+
+    <!-- Navigation Menu -->
+    <nav>
+        <ul>
+            <li><a href="admin_dashbord.html">Dashboard</a></li>
+            <li><a href="manage-sensors.htm">Manage Sensors</a></li>
+            <li><a href="view-sensor-data.html">View Sensor Data</a></li>
+            <li><a href="user-management.html">User Management</a></li>
+            
+        </ul>
+    </nav>
+
+    <!-- View Sensor Data Section -->
+    <section class="view-sensor-data">
+        <h2>View Sensor Data</h2>
+
+        <!-- Filter Section -->
+        <div class="filter-section">
+            <input type="date" id="filter-date" name="filter-date">
+            <select id="sensor-location" name="sensor-location">
+                <option value="all">All Locations</option>
+                <option value="fort">Fort</option>
+                <option value="galle-face">Galle Face</option>
+                <option value="colpetty">Colpetty</option>
+                <option value="nugegoda">Nugegoda</option>
+            </select>
+            <button onclick="filterData()">Filter</button>
+        </div>
+
+        <!-- Sensor Data Table -->
+        <table class="sensor-data-table">
+            <thead>
+                <tr>
+                    <th>Sensor Name</th>
+                    <th>Location</th>
+                    <th>AQI</th>
+                    <th>PM2.5</th>
+                    <th>PM10</th>
+                    <th>NO2</th>
+                    <th>SO2</th>
+                    <th>CO</th>
+                    <th>Ozone</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="sensor-data-list">
+                <!-- Example Sensor Data -->
+                <tr>
+                    <td>Sensor 1</td>
+                    <td>Fort</td>
+                    <td>78</td>
+                    <td>25</td>
+                    <td>35</td>
+                    <td>15</td>
+                    <td>10</td>
+                    <td>0.8</td>
+                    <td>0.03</td>
+                    <td><button>View Details</button></td>
+                </tr>
+                <tr>
+                    <td>Sensor 2</td>
+                    <td>Galle Face</td>
+                    <td>82</td>
+                    <td>30</td>
+                    <td>40</td>
+                    <td>20</td>
+                    <td>12</td>
+                    <td>1.0</td>
+                    <td>0.04</td>
+                    <td><button>View Details</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+    <!-- Footer Section -->
+    <footer>
+        <ul>
+            <li><a href="index.html#about-section">About the Project</a></li>
+            <li><a href="contactus.html#privacy-policy-section">Privacy Policy</a></li>
+            <li><a href="contactus.html#contact-us-section">Contact Us</a></li>
+        </ul>
+        <p>© 2025 Real-time Air Quality Monitoring Project</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Simulate filtering of sensor data
+        function filterData() {
+            var filterDate = document.getElementById('filter-date').value;
+            var sensorLocation = document.getElementById('sensor-location').value;
+
+            console.log('Filter applied - Date:', filterDate, 'Location:', sensorLocation);
+            
+            // In a real scenario, you would fetch and update the table with filtered data
+        }
+    </script>
+
+</body>
+</html>
