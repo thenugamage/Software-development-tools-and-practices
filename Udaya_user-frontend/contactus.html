@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-time Air Quality Monitoring Dashboard</title>
+    
+    <!-- Internal CSS -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .main-banner {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: #00796b;
+            color: #fff;
+        }
+        .cta-button {
+            background-color: #ff9800;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .cta-button:hover {
+            background-color: #ff5722;
+        }
+        .overview-section {
+            background-color: #fff;
+            padding: 30px;
+            text-align: center;
+        }
+        .map-section {
+            padding: 50px 20px;
+            text-align: center;
+        }
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        footer ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        footer ul li {
+            margin: 10px 0;
+        }
+        footer ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        /* Privacy Policy Page */
+        .privacy-policy-page, .contact-us-page {
+            background-color: #fff;
+            padding: 30px;
+            margin-top: 30px;
+            text-align: left;
+            max-width: 900px;
+            margin: 30px auto;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .privacy-policy-page h2, .contact-us-page h2 {
+            color: #00796b;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .privacy-policy-page p, .contact-us-page p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .privacy-policy-page h3, .contact-us-page h3 {
+            color: #00796b;
+            font-size: 1.5rem;
+            margin-top: 25px;
+        }
+
+        .privacy-policy-page strong, .contact-us-page strong {
+            font-weight: bold;
+        }
+
+        .contact-us-page form {
+            font-size: 1.1rem;
+            margin-top: 20px;
+        }
+
+        .contact-us-page input, .contact-us-page textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .contact-us-page input[type="submit"] {
+            background-color: #00796b;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            padding: 10px 20px;
+        }
+
+        .contact-us-page input[type="submit"]:hover {
+            background-color: #ff9800;
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <h1>Air Quality Dashboard</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#map-section">Real-time Map</a></li>
+                <li><a href="index.html#historical-data-section">Historical Data</a></li>
+                <li><a href="index.html#help-section">Help</a></li>
+                <li><a href="index.html#about-section">About</a></li>
+               
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Banner Section -->
+    <section class="main-banner">
+        <h2>Welcome to the Real-time Air Quality Monitoring Dashboard</h2>
+        <p>Monitor the air quality in Colombo Metropolitan Area in real-time</p>
+        <a href="index.html#map-section" class="cta-button">Explore the Dashboard</a>
+    </section>
+
+    
+
+    <!-- Privacy Policy Page -->
+    <section class="privacy-policy-page" id="privacy-policy-section">
+        <h2>Privacy Policy</h2>
+        <p><strong>Effective Date:</strong> March 29, 2025</p>
+        <p>Your privacy is important to us. This Privacy Policy document outlines the types of personal information that is received and collected by our Air Quality Monitoring Dashboard and how it is used.</p>
+        
+        <h3>1. Information We Collect</h3>
+        <p>We collect non-personal information automatically when you visit our site, including your browser type, language preferences, referring pages, and the date and time of each visitor request.</p>
+        
+        <h3>2. How We Use Your Information</h3>
+        <p>The information we collect is used solely for the purpose of providing you with accurate, real-time air quality data and monitoring. We do not share or sell your data to third parties.</p>
+        
+        <h3>3. Data Security</h3>
+        <p>We implement industry-standard security measures to protect your data. However, we cannot guarantee the absolute security of your information as no method of transmission over the internet is 100% secure.</p>
+        
+        <h3>4. Cookies</h3>
+        <p>Our website uses cookies to enhance the user experience. Cookies are small text files that are placed on your device to remember your preferences or provide session information. You can choose to disable cookies through your browser settings.</p>
+        
+        <h3>5. Changes to This Privacy Policy</h3>
+        <p>We may update this Privacy Policy from time to time. We will notify you of any changes by posting the updated policy on this page. Please check this page periodically for updates.</p>
+    </section>
+
+    <!-- Contact Us Page -->
+    <section class="contact-us-page" id="contact-us-section">
+        <h2>Contact Us</h2>
+        <p>If you have any questions or comments about our Air Quality Monitoring Dashboard, please feel free to contact us using the information below.</p>
+        
+        <h3>General Inquiries:</h3>
+        <p>Email: <a href="mailto:info@airqualitydashboard.com">info@airqualitydashboard.com</a></p>
+        
+        <h3>Support:</h3>
+        <p>If you need support or have issues with the dashboard, please reach out to our support team:</p>
+        <p>Email: <a href="mailto:support@airqualitydashboard.com">support@airqualitydashboard.com</a></p>
+        
+        <h3>Send Us a Message</h3>
+        <form action="submit_form.php" method="POST">
+            <label for="name">Your Name:</label><br>
+            <input type="text" id="name" name="name" required><br><br>
+
+            <label for="email">Your Email:</label><br>
+            <input type="email" id="email" name="email" required><br><br>
+
+            <label for="message">Your Message:</label><br>
+            <textarea id="message" name="message" rows="4" required></textarea><br><br>
+
+            <input type="submit" value="Send Message">
+        </form>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <ul>
+            
+            <li><a href="#privacy-policy-section">Privacy Policy</a></li>
+            <li><a href="#contact-us-section">Contact Us</a></li>
+        </ul>
+        <p>© 2025 Real-time Air Quality Monitoring Project</p>
+    </footer>
+
+    <!-- Leaflet.js for Map functionality -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        // Smooth Scroll for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
