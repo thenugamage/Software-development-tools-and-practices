@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Sensors - Admin Dashboard</title>
+
+    <!-- Internal CSS -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            background-color: #00796b;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            background-color: #ff9800;
+            border-radius: 5px;
+        }
+
+        .manage-sensors {
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #00796b;
+            margin-bottom: 20px;
+        }
+
+        .sensor-table {
+            width: 80%;
+            margin: 30px auto;
+            border-collapse: collapse;
+        }
+
+        .sensor-table th, .sensor-table td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        .sensor-table th {
+            background-color: #00796b;
+            color: white;
+        }
+
+        .sensor-table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .sensor-table button {
+            background-color: #ff9800;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .sensor-table button:hover {
+            background-color: #ff5722;
+        }
+
+        .add-sensor-form {
+            background-color: #fff;
+            padding: 20px;
+            margin-top: 30px;
+            width: 50%;
+            margin: 30px auto;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .add-sensor-form input[type="text"], .add-sensor-form select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .add-sensor-form input[type="submit"] {
+            background-color: #00796b;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .add-sensor-form input[type="submit"]:hover {
+            background-color: #ff9800;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        footer ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        footer ul li {
+            margin: 10px 0;
+        }
+
+        footer ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .add-sensor-form {
+                width: 80%;
+            }
+
+            .sensor-table {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <h1>Manage Sensors</h1>
+    </header>
+
+    <!-- Navigation Menu -->
+    <nav>
+        <ul>
+            <li><a href="admin_dashbord.html">Dashboard</a></li>
+            <li><a href="manage-sensors.htm">Manage Sensors</a></li>
+            <li><a href="view-sensor-data.html">View Sensor Data</a></li>
+            <li><a href="user-management.html">User Management</a></li>
+            
+        </ul>
+    </nav>
+
+    <!-- Manage Sensors Section -->
+    <section class="manage-sensors">
+        <h2>Manage Your Sensors</h2>
+
+        <!-- Add New Sensor Form -->
+        <div class="add-sensor-form">
+            <h3>Add New Sensor</h3>
+            <form id="add-sensor-form" method="POST" onsubmit="return addSensor()">
+                <label for="sensor-name">Sensor Name:</label>
+                <input type="text" id="sensor-name" name="sensor-name" placeholder="Enter sensor name" required>
+
+                <label for="sensor-location">Location:</label>
+                <input type="text" id="sensor-location" name="sensor-location" placeholder="Enter sensor location" required>
+
+                <label for="sensor-status">Status:</label>
+                <select id="sensor-status" name="sensor-status">
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+                </select>
+
+                <input type="submit" value="Add Sensor">
+            </form>
+        </div>
+
+        <!-- Sensor Table -->
+        <table class="sensor-table">
+            <thead>
+                <tr>
+                    <th>Sensor Name</th>
+                    <th>Location</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="sensor-list">
+                <!-- Example Sensors -->
+                <tr>
+                    <td>Sensor 1</td>
+                    <td>Fort</td>
+                    <td>Active</td>
+                    <td>
+                        <button>Edit</button>
+                        <button>Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Sensor 2</td>
+                    <td>Galle Face</td>
+                    <td>Inactive</td>
+                    <td>
+                        <button>Edit</button>
+                        <button>Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <ul>
+            <li><a href="index.html#about-section">About the Project</a></li>
+            <li><a href="contactus.html#privacy-policy-section">Privacy Policy</a></li>
+            <li><a href="contactus.html#contact-us-section">Contact Us</a></li>
+        </ul>
+        <p>© 2025 Real-time Air Quality Monitoring Project</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Add new sensor
+        function addSensor() {
+            var sensorName = document.getElementById('sensor-name').value;
+            var sensorLocation = document.getElementById('sensor-location').value;
+            var sensorStatus = document.getElementById('sensor-status').value;
+
+            // Create a new table row with the new sensor data
+            var table = document.getElementById('sensor-list');
+            var row = table.insertRow();
+
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            var cell3 = row.insertCell(2);
+            var cell4 = row.insertCell(3);
+
+            cell1.textContent = sensorName;
+            cell2.textContent = sensorLocation;
+            cell3.textContent = sensorStatus;
+            cell4.innerHTML = `<button>Edit</button> <button>Delete</button>`;
+
+            // Clear form fields
+            document.getElementById('sensor-name').value = '';
+            document.getElementById('sensor-location').value = '';
+            document.getElementById('sensor-status').value = 'active';
+
+            // Prevent form submission (for demo purposes)
+            return false;
+        }
+    </script>
+
+</body>
+</html>
