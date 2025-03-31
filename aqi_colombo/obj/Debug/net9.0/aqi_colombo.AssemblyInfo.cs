@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("aqi_colombo")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fd51f1cdc327791548a624a88113867d25bfaadc")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5c0fe38f3b74fbc1f098850811abb922dbdd8829")]
 [assembly: System.Reflection.AssemblyProductAttribute("aqi_colombo")]
 [assembly: System.Reflection.AssemblyTitleAttribute("aqi_colombo")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
